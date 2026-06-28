@@ -33,7 +33,7 @@ variable "private_subnet_cidrs" {
   }
 
 variable "database_subnet_cidrs" {
-  default = ["10.0.21.0/24", "10.0.22.0/24"]
+  default = ["10.10.21.0/24", "10.10.22.0/24"]
 }
 variable "public_subnet_tags" {
   default = {}
