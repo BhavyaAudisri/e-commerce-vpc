@@ -4,7 +4,7 @@ module "rds_sg" {
     environment = var.environment
     sg_name = "rds_sg"
     sg_description = "Created for rds instances in ecommerce dev"
-    vpc_id = data.aws_vpc.vpc.id
+    vpc_id = module.vpc.vpc_id
     common_tags = var.common_tags
 }
 
@@ -23,7 +23,7 @@ module "ecommerce_alb_sg" {
     environment = var.environment
     sg_name = "ecommerce_alb_sg"
     sg_description = "Created for alb in ecommerce dev"
-    vpc_id = data.aws_vpc.vpc.id
+    vpc_id = module.vpc.vpc_id
     common_tags = var.common_tags
 }
 
@@ -51,7 +51,7 @@ module "ecommerce_ecs_sg" {
     environment = var.environment
     sg_name = "ecommerce_ecs_sg"
     sg_description = "Created for  ecommerce-ecs-sg in ecommerce dev"
-    vpc_id = data.aws_vpc.vpc.id
+    vpc_id = module.vpc.vpc_id
     common_tags = var.common_tags
 }
 
@@ -94,7 +94,7 @@ module "vpclink_sg" {
     environment = var.environment
     sg_name = "vpclink_sg"
     sg_description = "Created for  vpclink_sg in ecommerce dev"
-    vpc_id = data.aws_vpc.vpc.id
+    vpc_id = module.vpc.vpc_id
     common_tags = var.common_tags
 }
 resource "aws_security_group_rule" "vpclink_sg_http" {
