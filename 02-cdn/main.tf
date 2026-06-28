@@ -92,8 +92,3 @@ data "aws_iam_policy_document" "bucket_policy" {
     }
   }
 }
-
-resource "aws_s3_bucket_policy" "ecommerce" {
-  bucket = data.aws_s3_bucket.ecommerce.id
-  policy = data.aws_iam_policy_document.bucket_policy.json
-}
