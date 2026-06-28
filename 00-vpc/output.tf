@@ -1,4 +1,4 @@
-# output "azs_info" {
+/* # output "azs_info" {
 #     value = module.vpc.azs_info
 # }
 output "elastic_ip" {
@@ -36,4 +36,4 @@ output "database_subnet_ids" {
 }
 output "gw_id" {
   value = module.vpc.gw_id
-}
+} */
