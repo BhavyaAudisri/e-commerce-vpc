@@ -3,7 +3,7 @@ resource "aws_lb_target_group" "product_tg" {
   port     = 8001
   protocol = "HTTP"
   target_type = "ip"
-  vpc_id   = module.vpc.vpc_id
+  vpc_id   = data.aws_vpc.vpc.id
 
   health_check {
     healthy_threshold = 2
@@ -21,7 +21,7 @@ resource "aws_lb_target_group" "cart_tg" {
   port     = 8002
   protocol = "HTTP"
   target_type = "ip"
-  vpc_id   = module.vpc.vpc_id
+  vpc_id   = data.aws_vpc.vpc.id
 
   health_check {
     healthy_threshold = 2
@@ -39,7 +39,7 @@ resource "aws_lb_target_group" "user_tg" {
   port     = 8003
   protocol = "HTTP"
   target_type = "ip"
-  vpc_id   = module.vpc.vpc_id
+  vpc_id   = data.aws_vpc.vpc.id
 
   health_check {
     healthy_threshold = 2
@@ -57,7 +57,7 @@ resource "aws_lb_target_group" "order_tg" {
   port     = 8004
   protocol = "HTTP"
   target_type = "ip"
-  vpc_id   = module.vpc.vpc_id
+  vpc_id   = data.aws_vpc.vpc.id
 
   health_check {
     healthy_threshold = 2
@@ -74,7 +74,7 @@ module "alb" {
   source   = "terraform-aws-modules/alb/aws"
   internal = true
   name                  = "ecommerce_internal_alb"
-  vpc_id                = module.vpc.vpc_id
+  vpc_id                = data.aws_vpc.vpc.id
   subnets               = module.vpc.private_subnet_ids
   create_security_group = false
   security_groups       = [module.ecommerce_alb_sg.sg_id]
