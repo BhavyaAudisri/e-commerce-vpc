@@ -113,3 +113,30 @@ resource "aws_security_group_rule" "vpclink_sg_https" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = module.vpclink_sg.sg_id
 }
+
+module "ecommerce_sg" {
+    source = "git::https://github.com/BhavyaAudisri/terraform-securitygroup.git?ref=main"
+    project_name = var.project_name
+    environment = var.environment
+    sg_name = "ecommerce_sg"
+    sg_description = "Created for rds instances in ecommerce dev"
+    vpc_id = module.vpc.vpc_id
+    common_tags = var.common_tags
+}
+resource "aws_security_group_rule" "ecommerce" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.ecommerce_sg.sg_id
+}
+
+resource "aws_security_group_rule" "ecommerce_http" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.ecommerce_sg.sg_id
+}
