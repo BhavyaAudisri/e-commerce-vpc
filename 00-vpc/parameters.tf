@@ -1,7 +1,7 @@
 resource "aws_ssm_parameter" "vpc_id" {
   name  = "/${var.project_name}/${var.environment}/vpc_id"
   type  = "String"
-  value = aws_vpc.vpc.vpc_id
+  value = aws_vpc.main.vpc_id
   #overwrite = true
 }
 resource "aws_ssm_parameter" "eip_id" {
