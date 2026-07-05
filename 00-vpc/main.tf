@@ -16,14 +16,8 @@ resource "aws_vpc" "main" {
 resource "aws_internet_gateway" "main" {
 
   vpc_id = aws_vpc.main.id
+  Name = "ecommerce-igw"
 
-  tags = merge(
-    var.common_tags,
-    var.igw_tags,
-    {
-      
-    }
-  )
 }
 
 # expense-dev-public-us-east-1a
@@ -72,11 +66,13 @@ resource "aws_subnet" "database" {
 
 resource "aws_eip" "nat" {
   domain = "vpc"
+  Name ="ecommerce-elastic-ip"
 }
 
 resource "aws_nat_gateway" "example" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
+  Name = "ecommerce-nat-gateway"
 
   
   # To ensure proper ordering, it is recommended to add an explicit dependency
