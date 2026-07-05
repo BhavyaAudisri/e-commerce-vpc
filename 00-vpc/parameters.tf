@@ -25,6 +25,6 @@ resource "aws_ssm_parameter" "private_subnet_ids" {
 resource "aws_ssm_parameter" "database_subnet_ids" {
   name  = "/${var.project_name}/${var.environment}/database-subnet_ids"
   type = "StringList"
-  value = join(",", aws_subnet.database[count.index])
+  value = join(",", aws_subnet.database[*].id)
   #overwrite = true
  }
