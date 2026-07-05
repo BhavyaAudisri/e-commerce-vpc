@@ -82,7 +82,7 @@ resource "aws_nat_gateway" "example" {
     var.common_tags,
     var.nat_gateway_tags,
     {
-      Name = ecommerce-nat-gateway
+      
     }
   )
 
