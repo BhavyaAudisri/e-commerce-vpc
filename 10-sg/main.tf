@@ -1,6 +1,7 @@
 module "rds_sg" {
     source = "git::https://github.com/BhavyaAudisri/terraform-securitygroup.git?ref=main"
     project_name = var.project_name
+    environment = var.environment
     sg_name = "rds_sg"
     sg_description = "Created for rds instances in ecommerce dev"
     vpc_id = data.aws_ssm_parameter.vpc_id.value
