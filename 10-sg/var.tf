@@ -1,9 +1,5 @@
 variable "project_name" {
-    default = "ecommerce"
-}
-
-variable "environment" {
-    default = "dev"
+    default = "ecommerce-vpc"
 }
 
 variable "common_tags" {

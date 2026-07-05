@@ -1,6 +1,3 @@
-data "aws_vpc" "vpc" {
-  filter {
-    name   = "tag:Name"
-    values = ["ecommerce-dev"]
-  }
+data "aws_ssm_parameter" "vpc_id" {
+  name = "/${var.project_name}/vpc_id"
 }
