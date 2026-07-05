@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "main" {
     var.common_tags,
     var.igw_tags,
     {
-      Name = ecommerce-igw
+      
     }
   )
 }
@@ -53,6 +53,19 @@ resource "aws_subnet" "private" {
     var.common_tags,
     {
       Name = "${local.resource_name}-private-${local.az_names[count.index]}"
+    }
+  )
+}
+resource "aws_subnet" "database" {
+  count                   = length(var.database_subnet_cidrs)
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.database_subnet_cidrs[count.index]
+  availability_zone       = local.az_names[count.index]
+
+  tags = merge(
+    var.common_tags,
+    {
+      Name = "${local.resource_name}-database-${local.az_names[count.index]}"
     }
   )
 }
