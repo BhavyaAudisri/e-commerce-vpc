@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
     var.common_tags,
     var.vpc_tags,
     {
-      Name = ecommerce-vpc
+      Name = local.resource_name
     }
   )
 }

@@ -20,7 +20,6 @@ variable "vpc_tags" {
   }
 }
 
-
 variable "enable_dns_hostnames" {
   default = true
 }
