@@ -16,7 +16,7 @@ resource "aws_vpc" "main" {
 resource "aws_internet_gateway" "main" {
 
   vpc_id = aws_vpc.main.id
-  Name = "ecommerce-igw"
+
 
 }
 
@@ -66,7 +66,7 @@ resource "aws_subnet" "database" {
 
 resource "aws_eip" "nat" {
   domain = "vpc"
-  Name ="ecommerce-elastic-ip"
+ 
 }
 
 resource "aws_nat_gateway" "example" {
