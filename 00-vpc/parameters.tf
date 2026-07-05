@@ -13,13 +13,13 @@ resource "aws_ssm_parameter" "eip_id" {
 resource "aws_ssm_parameter" "public_subnet_ids" {
   name  = "/${var.project_name}/${var.environment}/public-subnet_ids"
   type = "StringList"
-  value = join(",", aws_subnet.public[count.index])
+  value = join(",", aws_subnet.public[*].id)
   #overwrite = true
 }
 resource "aws_ssm_parameter" "private_subnet_ids" {
   name  = "/${var.project_name}/${var.environment}/private-subnet_ids"
   type = "StringList"
-  value = join(",", aws_subnet.private[count.index])
+  value = join(",", aws_subnet.private[*].id)
   #overwrite = true
 }
 resource "aws_ssm_parameter" "database_subnet_ids" {
