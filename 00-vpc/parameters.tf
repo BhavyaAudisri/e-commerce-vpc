@@ -7,7 +7,7 @@ resource "aws_ssm_parameter" "vpc_id" {
 resource "aws_ssm_parameter" "eip_id" {
   name  = "/${var.project_name}/eip_id"
   type  = "String"
-  value = aws_eip.nat.eip_ip
+  value = aws_eip.nat.id
  #overwrite = true
 }
 resource "aws_ssm_parameter" "public_subnet_ids" {
