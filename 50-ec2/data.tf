@@ -44,3 +44,14 @@ data "aws_ssm_parameter" "cdn_domain" {
 data "aws_cloudfront_distribution" "cdn" {
   id = "E31O3QJA5R0U02" # Your existing CloudFront Distribution ID
 }
+
+data "aws_ssm_parameter" "access_key" {
+  name = "/ecommerce/aws/access-key"
+  #overwrite = true
+}
+
+data "aws_ssm_parameter" "secret_key" {
+  name            = "/ecommerce/aws/secret-key"
+  with_decryption = true
+  #overwrite = true
+}

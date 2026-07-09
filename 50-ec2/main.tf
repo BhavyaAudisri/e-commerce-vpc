@@ -10,6 +10,7 @@ resource "aws_instance" "ecommerce" {
     user        = "ubuntu"                     # Amazon Linux: ec2-user
     host        = self.public_ip
     private_key = file("${path.module}/e_commerce.pem")
+    timeout     = "5m"
   }
    provisioner "file" {
     source      = "${path.module}/userdata.sh"
@@ -23,13 +24,12 @@ resource "aws_instance" "ecommerce" {
     ]
   }
 
-  user_data = templatefile("${path.module}/userdata.sh", {
   access_key   = data.aws_ssm_parameter.access_key.value
   secret_key   = data.aws_ssm_parameter.secret_key.value
   GITHUB_TOKEN  = data.aws_ssm_parameter.github_token.value
   user_pool_id = data.aws_ssm_parameter.user_pool_id.value
   app_client_id = data.aws_ssm_parameter.app_client_id.value
-})  
+ 
   user_data_replace_on_change = true
 
   tags = {
