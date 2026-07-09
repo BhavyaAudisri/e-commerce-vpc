@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+sudo su
 
 apt-get update -y
 
