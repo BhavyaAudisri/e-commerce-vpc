@@ -6,6 +6,7 @@ resource "aws_instance" "ecommerce" {
   key_name               = "e-commerce"
   associate_public_ip_address = true
   user_data = file("${path.module}/userdata.sh")
+  user_data_replace_on_change = true
 
   tags = {
     Name = "ecommerce"
