@@ -9,7 +9,7 @@ resource "aws_instance" "ecommerce" {
     type        = "ssh"
     user        = "ubuntu"                     # Amazon Linux: ec2-user
     host        = self.public_ip
-    private_key = file("${path.module}/ecommerce.pem")
+    private_key = file("${path.module}/e_commerce.pem")
   }
    provisioner "file" {
     source      = "${path.module}/userdata.sh"
