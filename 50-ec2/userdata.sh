@@ -19,9 +19,6 @@ aws configure set aws_secret_access_key "${secret_key}"
 aws configure set default.region "us-east-1"
 aws configure set default.output "json"
 
-GITHUB_TOKEN="${github_token}"
-
-
 git clone https://BhavyaAudisri:${GITHUB_TOKEN}@github.com/BhavyaAudisri/ecommerce.git
 
 cd /root/ecommerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
