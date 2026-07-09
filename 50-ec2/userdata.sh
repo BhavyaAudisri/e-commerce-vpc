@@ -1,15 +1,17 @@
 #!/bin/bash
 set -e
 
-apt update -y
+apt-get update -y
+
+apt-get install curl -y
 
 curl -fsSL http://get.docker.com -o get-docker.sh
 sh get-docker.sh
 usermod -aG docker ubuntu
 
-apt-get install -y nodejs npm
+apt-get install -y nodejs npm 
 
-apt install awscli -y
+apt-get install awscli -y
 
 aws configure set aws_access_key_id "${data.aws_ssm_parameter.access_key.value}"
 aws configure set aws_secret_access_key "${data.aws_ssm_parameter.secret_key.value}"
