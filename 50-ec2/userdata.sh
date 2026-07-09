@@ -48,10 +48,11 @@ if [ -d "ecommerce" ]; then
     rm -rf ecommerce
 fi
 
-git clone https://BhavyaAudisri:$GITHUB_TOKEN@github.com/BhavyaAudisri/ecommerce.git
+git clone https://BhavyaAudisri:$GITHUB_TOKEN@github.com/BhavyaAudisri/e-commerce.git
+
 
 # Navigate to React application
-cd /root/ecommerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
+cd /root/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
 
 # Update Cognito configuration
 sed -i "s|YOUR_USER_POOL_ID|$USER_POOL_ID|g" aws_config.js
