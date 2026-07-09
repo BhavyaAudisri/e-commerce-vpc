@@ -4,10 +4,10 @@ resource "aws_ssm_parameter" "ecommerce_sg_id" {
   value = module.ecommerce_sg.sg_id
  # overwrite = true
 }
-resource "aws_ssm_parameter" "rds_sg_id" {
+resource "aws_ssm_parameter" "rds_sg" {
   name  = "/${var.project_name}/rds_sg_id"
   type  = "String"
-  value = module.rds_sg_id.sg_id
+  value = module.rds_sg.sg_id
  # overwrite = true
 }
 resource "aws_ssm_parameter" "ecommerce_alb_sg" {
