@@ -15,35 +15,58 @@ resource "aws_cloudfront_origin_access_control" "oac" {
 ############################
 # CloudFront Distribution
 ############################
-
 resource "aws_cloudfront_distribution" "cdn" {
 
   enabled             = true
   comment             = "ecommerce-distribution"
   default_root_object = "index.html"
 
+  price_class     = "PriceClass_All"
+  is_ipv6_enabled = true
+  http_version    = "http1.1"
+
+  web_acl_id = "arn:aws:wafv2:us-east-1:250935839460:global/webacl/CreatedByCloudFront-a8a4954a/97f7576e-db5c-407b-ba74-00f9305cdd60"
+
   origin {
-    domain_name              = data.aws_s3_bucket.ecommerce.bucket_regional_domain_name
-    origin_id                = "frontend-s3-origin"
-    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
+    domain_name              = "ecommerce-frontend-1488.s3.us-east-1.amazonaws.com"
+    origin_id                = "bhavya-e-comm.s3.us-east-1.amazonaws.com-mqagy0ic898"
+    origin_access_control_id = "E2U8DSO0S7CVN2"
+
+    connection_attempts = 3
+    connection_timeout  = 10
   }
 
   default_cache_behavior {
-    target_origin_id       = "frontend-s3-origin"
+
+    target_origin_id       = "bhavya-e-comm.s3.us-east-1.amazonaws.com-mqagy0ic898"
     viewer_protocol_policy = "redirect-to-https"
 
-    allowed_methods = ["GET", "HEAD"]
-    cached_methods  = ["GET", "HEAD"]
+    allowed_methods = [
+      "GET",
+      "HEAD"
+    ]
 
-    compress = true
+    cached_methods = [
+      "GET",
+      "HEAD"
+    ]
 
-    forwarded_values {
-      query_string = false
+    compress        = true
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+  }
 
-      cookies {
-        forward = "none"
-      }
-    }
+  custom_error_response {
+    error_code            = 403
+    response_code         = 403
+    response_page_path    = "/index.html"
+    error_caching_min_ttl = 10
+  }
+
+  custom_error_response {
+    error_code            = 404
+    response_code         = 404
+    response_page_path    = "/index.html"
+    error_caching_min_ttl = 10
   }
 
   restrictions {
@@ -54,9 +77,8 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+    minimum_protocol_version       = "TLSv1"
   }
-
-  price_class = "PriceClass_100"
 }
 
 ############################
