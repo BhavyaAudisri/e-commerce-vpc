@@ -17,7 +17,7 @@ resource "aws_route53_record" "cdn" {
  name = "${var.domain_name}"
  type = "A"
  alias {
-    name = data.aws_ssm_parameter.cdn.domain_name
+    name = data.aws_cloudfront_distribution.cdn.domain_name
     zone_id = data.aws_cloudfront_distribution.cdn.hosted_zone_id
     evaluate_target_health = false
         }
