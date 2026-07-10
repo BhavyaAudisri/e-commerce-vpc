@@ -55,8 +55,8 @@ git clone https://BhavyaAudisri:$GITHUB_TOKEN@github.com/BhavyaAudisri/e-commerc
 cd /root/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
 
 # Update Cognito configuration
-sed -i "s|YOUR_USER_POOL_ID|$USER_POOL_ID|g" aws_config.js
-sed -i "s|YOUR_USER_POOL_CLIENT_ID|$APP_CLIENT_ID|g" aws_config.js
+sed -i "s|YOUR_USER_POOL_ID|$USER_POOL_ID|g" aws-config.js
+sed -i "s|YOUR_USER_POOL_CLIENT_ID|$APP_CLIENT_ID|g" aws-config.js
 
 # Build application
 cd ..
