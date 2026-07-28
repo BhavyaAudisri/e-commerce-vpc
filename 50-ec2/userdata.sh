@@ -14,7 +14,6 @@ apt-get update -y
 apt-get install -y \
     curl \
     git \
-    npm \
     unzip \
 
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
