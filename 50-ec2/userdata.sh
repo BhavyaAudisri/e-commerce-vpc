@@ -18,7 +18,7 @@ apt-get install -y \
     unzip
 echo "Installing Node.js..."
 
-curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
 apt-get install -y nodejs
     
@@ -68,8 +68,8 @@ sed -i "s|YOUR_USER_POOL_CLIENT_ID|$APP_CLIENT_ID|g" aws-config.js
 # Build application
 echo " building application ..."
 cd ..
-
-npm install
+rm -rf node_modules package-lock.json
+npm install --save-dev eslint-plugin-jest
 npm run build
 
 # Verify AWS authentication
