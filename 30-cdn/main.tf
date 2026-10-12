@@ -28,9 +28,9 @@ resource "aws_cloudfront_distribution" "cdn" {
   web_acl_id = "arn:aws:wafv2:us-east-1:250935839460:global/webacl/CreatedByCloudFront-a8a4954a/97f7576e-db5c-407b-ba74-00f9305cdd60"
 
   origin {
-    domain_name              = "ecommerce-frontend-1488.s3.us-east-1.amazonaws.com"
-    origin_id                = "bhavya-e-comm.s3.us-east-1.amazonaws.com-mqagy0ic898"
-    origin_access_control_id = "E2U8DSO0S7CVN2"
+    domain_name              = "ecommerce-frontend-f1cafe07"
+    origin_id                = "ecommerce-bhavya-001.s3.us-east-1.amazonaws.com-murwzu1mk8v"
+    origin_access_control_id = "E2KJ10URLBDUXC"
 
     connection_attempts = 3
     connection_timeout  = 10
@@ -38,7 +38,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   default_cache_behavior {
 
-    target_origin_id       = "bhavya-e-comm.s3.us-east-1.amazonaws.com-mqagy0ic898"
+    target_origin_id       = "ecommerce-bhavya-001.s3.us-east-1.amazonaws.com-murwzu1mk8v"
     viewer_protocol_policy = "redirect-to-https"
 
     allowed_methods = [
