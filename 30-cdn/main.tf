@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   origin {
     domain_name              = data.aws_s3_bucket.ecommerce.bucket_regional_domain_name
     origin_id                = "ecommerce-frontend-origin"
-    origin_access_control_id = "E2KJ10URLBDUXC"
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
 
     connection_attempts = 3
     connection_timeout  = 10
