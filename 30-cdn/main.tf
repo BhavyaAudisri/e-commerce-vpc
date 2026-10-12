@@ -25,7 +25,8 @@ resource "aws_cloudfront_distribution" "cdn" {
   is_ipv6_enabled = true
   http_version    = "http1.1"
 
-  web_acl_id = "arn:aws:wafv2:us-east-1:871893060328:global/webacl/CreatedByCloudFront-a8a4954a/97f7576e-db5c-407b-ba74-00f9305cdd60"
+  web_acl_id = "arn:aws:wafv2:us-east-1:871893060328:global/webacl/CreatedByCloudFront-4949dc18/b439828f-59f4-40a9-af0a-98ae29d618a2"
+  #web_acl_id = "arn:aws:wafv2:us-east-1:871893060328:global/webacl/CreatedByCloudFront-a8a4954a/97f7576e-db5c-407b-ba74-00f9305cdd60"
 
   origin {
     domain_name              = data.aws_s3_bucket.ecommerce.bucket_regional_domain_name
