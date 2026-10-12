@@ -109,7 +109,7 @@ data "aws_iam_policy_document" "bucket_policy" {
       variable = "AWS:SourceArn"
 
       values = [
-        aws_cloudfront_distribution.cdn.arn
+        data.aws_cloudfront_distribution.cdn.arn
       ]
     }
   }
