@@ -1,5 +1,9 @@
+resource "random_id" "bucket_suffix" {
+  byte_length = 4
+}
+
 resource "aws_s3_bucket" "ecommerce" {
-  bucket = "ecommerce-frontend-1488"
+  bucket = "ecommerce-frontend-${random_id.bucket_suffix.hex}"
 
 }
 
