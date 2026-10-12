@@ -28,8 +28,8 @@ resource "aws_cloudfront_distribution" "cdn" {
   web_acl_id = "arn:aws:wafv2:us-east-1:250935839460:global/webacl/CreatedByCloudFront-a8a4954a/97f7576e-db5c-407b-ba74-00f9305cdd60"
 
   origin {
-    domain_name              = "ecommerce-frontend-f1cafe07"
-    origin_id                = "ecommerce-bhavya-001.s3.us-east-1.amazonaws.com-murwzu1mk8v"
+    domain_name              = data.aws_s3_bucket.ecommerce.bucket_regional_domain_name
+    origin_id                = "ecommerce-frontend-origin"
     origin_access_control_id = "E2KJ10URLBDUXC"
 
     connection_attempts = 3
@@ -38,7 +38,7 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   default_cache_behavior {
 
-    target_origin_id       = "ecommerce-bhavya-001.s3.us-east-1.amazonaws.com-murwzu1mk8v"
+    target_origin_id       = "ecommerce-frontend-origin"
     viewer_protocol_policy = "redirect-to-https"
 
     allowed_methods = [
