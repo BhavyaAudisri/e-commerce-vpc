@@ -6,7 +6,7 @@ locals {
     }
     cart = {
       repo = "ecommerce/cart_service"
-      path = "../cart-_ervice"
+      path = "../cart_service"
     }
     user = {
       repo = "ecommerce/user-service"

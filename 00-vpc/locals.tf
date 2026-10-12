@@ -8,4 +8,5 @@ locals {
   db_route_id      = aws_route_table.database.id
   default_vpc_cidr = data.aws_vpc.default.cidr_block
   #gw_id = aws_internet_gateway.main.id
+  private_subnet_ids = aws_subnet.private[*].id
 }
