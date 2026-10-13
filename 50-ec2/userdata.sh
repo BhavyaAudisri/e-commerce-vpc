@@ -1,5 +1,5 @@
 #!/bin/bash
-set -xe
+set -Ee
 
 # Log everything
 exec > >(tee /var/log/ecommerce.log)
