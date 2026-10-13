@@ -48,14 +48,15 @@ aws configure set default.region "us-east-1"
 aws configure set default.output "json"
 
 # Clone repository
-echo "cloning repository ..."
+echo "Cloning repository..."
 cd /root
 
-if [ -d "ecommerce" ]; then
-    rm -rf ecommerce
-fi
-
+rm -rf /root/e-commerce
 git clone https://github.com/BhavyaAudisri/e-commerce.git
+
+cd /root/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
+
+ls -la
 
 
 # Navigate to React application
