@@ -10,7 +10,7 @@ resource "aws_instance" "ecommerce" {
     type        = "ssh"
     user        = "ubuntu"
     host        = self.public_ip
-    private_key = file("${path.module}/e-commerce.pem")
+    private_key = file("${path.module}/ecommerce.pem")
     timeout     = "5m"
   }
 
