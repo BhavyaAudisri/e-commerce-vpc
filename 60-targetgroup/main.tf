@@ -73,7 +73,7 @@ resource "aws_lb_target_group" "order_tg" {
 module "alb" {
   source                     = "terraform-aws-modules/alb/aws"
   internal                   = true
-  name                       = "ecommerce_internal_alb"
+  name                       = "ecommerce-internal-alb"
   vpc_id                     = data.aws_ssm_parameter.vpc.value
   subnets                    = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
   create_security_group      = false
