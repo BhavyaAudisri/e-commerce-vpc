@@ -42,7 +42,7 @@ data "aws_ssm_parameter" "cdn_domain" {
 }
 
 data "aws_cloudfront_distribution" "cdn" {
-  id = "E31O3QJA5R0U02" # Your existing CloudFront Distribution ID
+  id = "E2KJ10URLBDUXC" # Your existing CloudFront Distribution ID
 }
 
 data "aws_ssm_parameter" "access_key" {
