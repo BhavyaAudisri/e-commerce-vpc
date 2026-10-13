@@ -75,7 +75,7 @@ module "alb" {
   internal                   = true
   name                       = "ecommerce_internal_alb"
   vpc_id                     = data.aws_ssm_parameter.vpc.value
-  subnets = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
+  subnets                    = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
   create_security_group      = false
   security_groups            = [data.aws_ssm_parameter.ecommerce_alb_sg_id.value]
   enable_deletion_protection = false
