@@ -34,7 +34,7 @@ variable "public_subnet_cidrs" {
     condition     = length(var.public_subnet_cidrs) == 2
     error_message = "Please provide 2 valid public subnet CIDR"
   }
-   default = ["10.10.1.0/24", "10.10.2.0/24"]
+  default = ["10.10.1.0/24", "10.10.2.0/24"]
 }
 
 variable "private_subnet_cidrs" {
