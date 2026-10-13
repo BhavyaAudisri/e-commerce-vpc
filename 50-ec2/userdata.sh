@@ -70,6 +70,7 @@ echo " building application ..."
 cd ..
 rm -rf node_modules package-lock.json
 npm install --save-dev eslint-plugin-jest
+npm install eslint@8
 npm run build
 
 # Verify AWS authentication
