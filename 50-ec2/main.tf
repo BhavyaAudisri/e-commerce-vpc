@@ -23,11 +23,11 @@ resource "aws_instance" "ecommerce" {
     inline = [
       "chmod +x /tmp/userdata.sh",
 
-      "export ACCESS_KEY='${data.aws_ssm_parameter.access_key.value}'&&
-      export SECRET_KEY='${data.aws_ssm_parameter.secret_key.value}'&&
-      export USER_POOL_ID='${data.aws_ssm_parameter.user_pool_id.value}'&&
-      export APP_CLIENT_ID='${data.aws_ssm_parameter.app_client_id.value}'&&
-      sudo -E /tmp/userdata.sh"
+      "export ACCESS_KEY='${data.aws_ssm_parameter.access_key.value}' \n
+      && export SECRET_KEY='${data.aws_ssm_parameter.secret_key.value}' \n
+      && export USER_POOL_ID='${data.aws_ssm_parameter.user_pool_id.value}' \n
+      && export APP_CLIENT_ID='${data.aws_ssm_parameter.app_client_id.value}' \n
+      && sudo -E /tmp/userdata.sh"
     ]
   }
 
