@@ -23,6 +23,7 @@ resource "aws_instance" "ecommerce" {
     inline = [
       "chmod +x /tmp/userdata.sh",
       <<-EOT
+      set -x
       export ACCESS_KEY='${data.aws_ssm_parameter.access_key.value}'
       export SECRET_KEY='${data.aws_ssm_parameter.secret_key.value}'
       export USER_POOL_ID='${data.aws_ssm_parameter.user_pool_id.value}'
@@ -38,12 +39,12 @@ resource "aws_instance" "ecommerce" {
 }
 
 resource "aws_route53_record" "cdn" {
- zone_id = var.zone_id
- name = "${var.domain_name}"
- type = "A"
- alias {
-    name = data.aws_cloudfront_distribution.cdn.domain_name
-    zone_id = data.aws_cloudfront_distribution.cdn.hosted_zone_id
+  zone_id = var.zone_id
+  name    = var.domain_name
+  type    = "A"
+  alias {
+    name                   = data.aws_cloudfront_distribution.cdn.domain_name
+    zone_id                = data.aws_cloudfront_distribution.cdn.hosted_zone_id
     evaluate_target_health = false
-        }
+  }
 }
