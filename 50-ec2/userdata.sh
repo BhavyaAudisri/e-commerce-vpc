@@ -49,22 +49,16 @@ aws configure set default.output "json"
 
 # Clone repository
 echo "Cloning repository..."
-cd /root
+cd /opt
+rm -rf /opt/e-commerce
+git clone https://github.com/BhavyaAudisri/e-commerce.git /opt/e-commerce
 
-rm -rf /root/e-commerce
-git clone https://github.com/BhavyaAudisri/e-commerce.git
-
-cd /root/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
-
-ls -la
-
-
-# Navigate to React application
-cd /root/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app/src
+# Navigate to React application root
+cd /opt/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app
 
 # Update Cognito configuration
-sed -i "s|YOUR_USER_POOL_ID|$USER_POOL_ID|g" aws-config.js
-sed -i "s|YOUR_USER_POOL_CLIENT_ID|$APP_CLIENT_ID|g" aws-config.js
+sed -i "s|YOUR_USER_POOL_ID|$USER_POOL_ID|g" src/aws-config.js
+sed -i "s|YOUR_USER_POOL_CLIENT_ID|$APP_CLIENT_ID|g" src/aws-config.js
 
 # Build application
 echo " building application ..."
