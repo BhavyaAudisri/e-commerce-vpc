@@ -81,7 +81,7 @@ module "alb" {
   enable_deletion_protection = false
 }
 resource "aws_lb_listener" "default_tg" {
-  load_balancer_arn = module.alb.lb_arn
+  load_balancer_arn = module.alb.arn
   port              = 80
   protocol          = "HTTP"
 
