@@ -25,7 +25,7 @@ resource "aws_instance" "ecommerce" {
 
       "export ACCESS_KEY='${data.aws_ssm_parameter.access_key.value}'",
       "export SECRET_KEY='${data.aws_ssm_parameter.secret_key.value}'",
-      "export GITHUB_TOKEN='${data.aws_ssm_parameter.github_token.value}'",
+      #"export GITHUB_TOKEN='${data.aws_ssm_parameter.github_token.value}'",
       "export USER_POOL_ID='${data.aws_ssm_parameter.user_pool_id.value}'",
       "export APP_CLIENT_ID='${data.aws_ssm_parameter.app_client_id.value}'",
 

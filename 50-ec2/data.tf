@@ -25,9 +25,9 @@ data "aws_ssm_parameter" "public_subnet_ids" {
 data "aws_ssm_parameter" "ecommerce_sg_id" {
   name = "/${var.project_name}/ecommerce_sg_id"
 }
-data "aws_ssm_parameter" "github_token" {
+/* data "aws_ssm_parameter" "github_token" {
   name = "/ecommerce/github/token"
-}
+} */
 
 data "aws_ssm_parameter" "user_pool_id" {
   name = "/ecommerce/cognito/user-pool-id"

@@ -55,7 +55,7 @@ if [ -d "ecommerce" ]; then
     rm -rf ecommerce
 fi
 
-git clone https://BhavyaAudisri:$GITHUB_TOKEN@github.com/BhavyaAudisri/e-commerce.git
+git clone https://github.com/BhavyaAudisri/e-commerce.git
 
 
 # Navigate to React application
