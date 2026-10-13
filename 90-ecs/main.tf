@@ -13,10 +13,12 @@ resource "aws_ecs_task_definition" "service" {
 
       portMappings = [
         {
-          containerPort = local.service_ports[var.service_name]
+          containerPort = local.service_ports[var.service_name].port
           protocol      = "tcp"
         }
       ]
+
+      environment = local.service_ports[var.service_name].environment
     }
   ])
 }

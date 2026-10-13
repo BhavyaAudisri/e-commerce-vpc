@@ -18,14 +18,14 @@ locals {
       port = 8001
       environment = [
         { name = "ENVIRONMENT", value = "dev" },
-        { name = "AWS_REGION ", value = "us-east-1" }
+        { name = "AWS_REGION", value = "us-east-1" }
       ]
     }
     cart = {
       port = 8002
       environment = [
         { name = "ENVIRONMENT", value = "dev" },
-        { name = "AWS_REGION ", value = "us-east-1" }
+        { name = "AWS_REGION", value = "us-east-1" }
       ]
     }
     user = {
