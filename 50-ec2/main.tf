@@ -23,7 +23,6 @@ resource "aws_instance" "ecommerce" {
     inline = [
       "chmod +x /tmp/userdata.sh",
       <<-EOT
-      set -x
       export ACCESS_KEY='${data.aws_ssm_parameter.access_key.value}'
       export SECRET_KEY='${data.aws_ssm_parameter.secret_key.value}'
       export USER_POOL_ID='${data.aws_ssm_parameter.user_pool_id.value}'
