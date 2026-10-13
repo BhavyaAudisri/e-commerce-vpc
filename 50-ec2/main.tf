@@ -3,7 +3,7 @@ resource "aws_instance" "ecommerce" {
   instance_type               = "t2.xlarge"
   subnet_id                   = local.public_subnet_id
   vpc_security_group_ids      = [data.aws_ssm_parameter.ecommerce_sg_id.value]
-  key_name                    = "e-commerce"
+  key_name                    = "ecommerce"
   associate_public_ip_address = true
 
   connection {
