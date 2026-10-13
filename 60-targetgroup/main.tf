@@ -77,7 +77,7 @@ module "alb" {
   vpc_id                     = data.aws_ssm_parameter.vpc.value
   subnets                    = module.vpc.private_subnet_ids
   create_security_group      = false
-  security_groups            = [module.ecommerce_alb_sg.sg_id]
+  security_groups            = [data.aws_ssm_parameter.ecommerce_alb_sg_id.value]
   enable_deletion_protection = false
 }
 resource "aws_lb_listener" "default_tg" {
