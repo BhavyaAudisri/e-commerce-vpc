@@ -1,5 +1,5 @@
 resource "aws_lb_target_group" "product_tg" {
-  name        = "product_service_tg"
+  name        = product_service_tg
   port        = 8001
   protocol    = "HTTP"
   target_type = "ip"
@@ -17,7 +17,7 @@ resource "aws_lb_target_group" "product_tg" {
   }
 }
 resource "aws_lb_target_group" "cart_tg" {
-  name        = "cart_service_tg"
+  name        = cart_service_tg
   port        = 8002
   protocol    = "HTTP"
   target_type = "ip"
@@ -35,7 +35,7 @@ resource "aws_lb_target_group" "cart_tg" {
   }
 }
 resource "aws_lb_target_group" "user_tg" {
-  name        = "user_service_tg"
+  name        = user_service_tg
   port        = 8003
   protocol    = "HTTP"
   target_type = "ip"
@@ -53,7 +53,7 @@ resource "aws_lb_target_group" "user_tg" {
   }
 }
 resource "aws_lb_target_group" "order_tg" {
-  name        = "order_service_tg"
+  name        = order_service_tg
   port        = 8004
   protocol    = "HTTP"
   target_type = "ip"
