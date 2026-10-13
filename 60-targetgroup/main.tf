@@ -1,83 +1,83 @@
 resource "aws_lb_target_group" "product_tg" {
-  name     = "product_service_tg"
-  port     = 8001
-  protocol = "HTTP"
+  name        = "product_service_tg"
+  port        = 8001
+  protocol    = "HTTP"
   target_type = "ip"
-  vpc_id   = data.aws_ssm_parameter.vpc.value
+  vpc_id      = data.aws_ssm_parameter.vpc.value
 
   health_check {
-    healthy_threshold = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout = 5
-    protocol = "HTTP"
-    port = 8001
-    path = "/health"
-    matcher = "200-299"
-    interval = 10
+    timeout             = 5
+    protocol            = "HTTP"
+    port                = 8001
+    path                = "/health"
+    matcher             = "200-299"
+    interval            = 10
   }
 }
 resource "aws_lb_target_group" "cart_tg" {
-  name     = "cart_service_tg"
-  port     = 8002
-  protocol = "HTTP"
+  name        = "cart_service_tg"
+  port        = 8002
+  protocol    = "HTTP"
   target_type = "ip"
-  vpc_id   = data.aws_ssm_parameter.vpc.value
+  vpc_id      = data.aws_ssm_parameter.vpc.value
 
   health_check {
-    healthy_threshold = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout = 5
-    protocol = "HTTP"
-    port = 8002
-    path = "/health"
-    matcher = "200-299"
-    interval = 10
+    timeout             = 5
+    protocol            = "HTTP"
+    port                = 8002
+    path                = "/health"
+    matcher             = "200-299"
+    interval            = 10
   }
 }
 resource "aws_lb_target_group" "user_tg" {
-  name     = "user_service_tg"
-  port     = 8003
-  protocol = "HTTP"
+  name        = "user_service_tg"
+  port        = 8003
+  protocol    = "HTTP"
   target_type = "ip"
-  vpc_id   = data.aws_ssm_parameter.vpc.value
+  vpc_id      = data.aws_ssm_parameter.vpc.value
 
   health_check {
-    healthy_threshold = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout = 5
-    protocol = "HTTP"
-    port = 8003
-    path = "/health"
-    matcher = "200-299"
-    interval = 10
+    timeout             = 5
+    protocol            = "HTTP"
+    port                = 8003
+    path                = "/health"
+    matcher             = "200-299"
+    interval            = 10
   }
 }
 resource "aws_lb_target_group" "order_tg" {
-  name     = "order_service_tg"
-  port     = 8004
-  protocol = "HTTP"
+  name        = "order_service_tg"
+  port        = 8004
+  protocol    = "HTTP"
   target_type = "ip"
-  vpc_id   = data.aws_ssm_parameter.vpc.value
+  vpc_id      = data.aws_ssm_parameter.vpc.value
 
   health_check {
-    healthy_threshold = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout = 5
-    protocol = "HTTP"
-    port = 8004
-    path = "/health"
-    matcher = "200-299"
-    interval = 10
+    timeout             = 5
+    protocol            = "HTTP"
+    port                = 8004
+    path                = "/health"
+    matcher             = "200-299"
+    interval            = 10
   }
 }
 module "alb" {
-  source   = "terraform-aws-modules/alb/aws"
-  internal = true
-  name                  = "ecommerce_internal_alb"
-  vpc_id                = data.aws_ssm_parameter.vpc.value
-  subnets               = module.vpc.private_subnet_ids
-  create_security_group = false
-  security_groups       = [module.ecommerce_alb_sg.sg_id]
+  source                     = "terraform-aws-modules/alb/aws"
+  internal                   = true
+  name                       = "ecommerce_internal_alb"
+  vpc_id                     = data.aws_ssm_parameter.vpc.value
+  subnets                    = module.vpc.private_subnet_ids
+  create_security_group      = false
+  security_groups            = [module.ecommerce_alb_sg.sg_id]
   enable_deletion_protection = false
 }
 resource "aws_lb_listener" "default_tg" {
@@ -86,7 +86,7 @@ resource "aws_lb_listener" "default_tg" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.product_tg.arn
 
   }
