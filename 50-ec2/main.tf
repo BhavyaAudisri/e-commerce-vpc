@@ -27,7 +27,6 @@ resource "aws_instance" "ecommerce" {
       export SECRET_KEY='${data.aws_ssm_parameter.secret_key.value}'&&
       export USER_POOL_ID='${data.aws_ssm_parameter.user_pool_id.value}'&&
       export APP_CLIENT_ID='${data.aws_ssm_parameter.app_client_id.value}'&&
-
       sudo -E /tmp/userdata.sh"
     ]
   }
