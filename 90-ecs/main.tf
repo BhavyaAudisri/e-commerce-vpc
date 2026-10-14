@@ -1,5 +1,6 @@
 resource "aws_ecs_task_definition" "service" {
-  family                   = "ecommerce-${var.service_name}-service"
+  foreach = local.service_ports
+  family                   = "ecommerce-${each.key}-service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "256"
