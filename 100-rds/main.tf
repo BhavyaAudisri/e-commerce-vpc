@@ -26,7 +26,7 @@ resource "aws_db_instance" "ecommerce" {
   password = data.aws_ssm_parameter.db_password.id
 
   db_subnet_group_name   = aws_db_subnet_group.ecommerce.name
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  vpc_security_group_ids = [data.aws_ssm_parameter.rds_sg.value]
 
   publicly_accessible = false
 
