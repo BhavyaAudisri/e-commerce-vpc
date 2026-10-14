@@ -12,6 +12,10 @@ variable "service_name" {
   }
 }
 
+variable "project_name" {
+  default = "ecommerce-vpc"
+}
+
 locals {
   service_ports = {
     product = {
