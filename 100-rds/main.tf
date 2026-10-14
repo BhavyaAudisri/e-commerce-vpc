@@ -2,7 +2,7 @@ resource "aws_db_subnet_group" "ecommerce" {
   name        = "ecommerce-db-subnet-group"
   description = "Subnet group for ecommerce RDS"
 
-  subnet_ids = data.aws_ssm_parameter.database_subnet_ids.value
+  subnet_ids = split(",", data.aws_ssm_parameter.database_subnet_ids.value)
 
   tags = {
     Name = "ecommerce-db-subnet-group"
