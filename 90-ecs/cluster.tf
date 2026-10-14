@@ -7,3 +7,22 @@ resource "aws_ecs_cluster" "ecommerce" {
   }
 
 }
+resource "aws_ecs_service" "ecommerce" {
+  for_each = local.service_ports
+
+  name            = "ecommerce-${each.key}-service"
+  cluster         = aws_ecs_cluster.ecommerce.id
+  task_definition = aws_ecs_task_definition.service[each.key].arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
+    subnets          = data.aws_ssm_parameter.private_subnet_ids.value[]
+    security_groups  = [aws_security_group.ecs.id]
+    assign_public_ip = false
+  }
+
+  deployment_minimum_healthy_percent = 50
+  deployment_maximum_percent         = 200
+}
