@@ -18,7 +18,7 @@ resource "aws_ecs_service" "ecommerce" {
 
   network_configuration {
     subnets = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
-    security_groups  = [data.aws_ssm_parameter.ecommerce_ecs_sg.id.value]
+    security_groups  = data.aws_ssm_parameter.ecommerce_ecs_sg.id.value
     assign_public_ip = false
   }
 
