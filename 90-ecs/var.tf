@@ -32,14 +32,14 @@ locals {
       port = 8003
       environment = [
         { name = "ENVIRONMENT", value = "dev" },
-        { name = "AWS_REGION ", value = "us-east-1" }
+        { name = "AWS_REGION", value = "us-east-1" }
       ]
     }
     order = {
       port = 8004
       environment = [
         { name = "ENVIRONMENT", value = "dev" },
-        { name = "AWS_REGION ", value = "us-east-1" }
+        { name = "AWS_REGION", value = "us-east-1" }
       ]
     }
   }
