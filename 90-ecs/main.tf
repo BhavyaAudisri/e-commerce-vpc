@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "service" {
-  foreach                  = local.service_ports
+  for_each                  = local.service_ports
   family                   = "ecommerce-${each.key}-service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "service" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([
     {
-      name      =  "${each.key}-service"
+      name      = "${each.key}-service"
       image     = data.aws_ssm_parameter.ecr_image.value
       essential = true
 
