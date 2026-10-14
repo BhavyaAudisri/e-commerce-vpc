@@ -7,5 +7,5 @@ data "aws_ssm_parameter" "private_subnet_ids" {
 }
 
 data "aws_ssm_parameter" "ecommerce_ecs_sg" {
-  name = "/${var.project_name}/ecommerce_ecs_sg_id"
+  name = "/${var.project_name}/ecommerce_ecs_sg"
 }
