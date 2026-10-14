@@ -23,7 +23,7 @@ resource "aws_db_instance" "ecommerce" {
 
   db_name  = "postgres"
   username = "postgres"
-  password = data.aws_ssm_parameter.db_password.id
+  password = data.aws_ssm_parameter.db_password.value
 
   db_subnet_group_name   = aws_db_subnet_group.ecommerce.name
   vpc_security_group_ids = [data.aws_ssm_parameter.rds_sg.value]
