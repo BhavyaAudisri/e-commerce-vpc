@@ -14,7 +14,7 @@ resource "aws_db_instance" "ecommerce" {
   identifier = "ecommercedb-instance"
 
   engine         = "postgres"
-  engine_version = "17.4"
+  engine_version = "17.5"
 
   instance_class = "db.t3.micro"
 
