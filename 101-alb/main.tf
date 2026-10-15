@@ -1,18 +1,15 @@
 module "alb" {
   source   = "terraform-aws-modules/alb/aws"
   internal = true
-  
+  product_target_group_arn = aws_lb_target_group.product.arn
+  cart_target_group_arn    = aws_lb_target_group.cart.arn
+  user_target_group_arn    = aws_lb_target_group.user.arn
+  order_target_group_arn   = aws_lb_target_group.order.arn  
   name                  = "ecommerce-internal-alb"
   vpc_id                = data.aws_ssm_parameter.vpc_id.value
-  subnets               = local.private_subnet_ids
+  subnets               = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
   create_security_group = false
   security_groups       = [local.app_alb_sg_id]
-  tags = merge(
-    var.common_tags,
-    {
-      Name = "${var.project_name}-${var.environment}-app-alb"
-    }
-  )
   enable_deletion_protection = false
 }
 resource "aws_lb_listener" "http" {
@@ -21,13 +18,71 @@ resource "aws_lb_listener" "http" {
   protocol          = "HTTP"
 
   default_action {
-    type = "fixed-response"
-
-    fixed_response {
-      content_type = "text/html"
-      message_body = "<h1> hello , I am from backend APP ALB </h1>"
-      status_code  = "200"
-    }
+    type = "forward"
+    target_group_arn = aws_lb_target_group.product.arn
    
+  }
+}
+
+resource "aws_lb_listener_rule" "product" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = var.product_target_group_arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/products/*"]
+    }
+  }
+}
+resource "aws_lb_listener_rule" "cart" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 20
+
+  action {
+    type             = "forward"
+    target_group_arn = var.cart_target_group_arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/cart/*"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "user" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 30
+
+  action {
+    type             = "forward"
+    target_group_arn = var.user_target_group_arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/users/*"]
+    }
+  }
+}
+
+resource "aws_lb_listener_rule" "order" {
+  listener_arn = aws_lb_listener.http.arn
+  priority     = 40
+
+  action {
+    type             = "forward"
+    target_group_arn = var.order_target_group_arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/orders/*"]
+    }
   }
 }

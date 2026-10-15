@@ -1,5 +1,6 @@
 resource "aws_lb_target_group" "product_tg" {
   name        = "product-service-tg"
+  
   port        = 8001
   protocol    = "HTTP"
   target_type = "ip"
