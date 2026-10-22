@@ -21,6 +21,11 @@ resource "aws_ecs_service" "ecommerce" {
     security_groups  = [data.aws_ssm_parameter.ecommerce_ecs_sg.value]
     assign_public_ip = false
   }
+    load_balancer {
+    target_group_arn = aws_lb_target_group.ecommerce[each.key].arn
+    container_name   = each.key
+    container_port   = each.value
+  }
 
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
