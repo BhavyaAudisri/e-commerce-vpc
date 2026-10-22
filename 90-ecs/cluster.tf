@@ -22,7 +22,7 @@ resource "aws_ecs_service" "ecommerce" {
     assign_public_ip = false
   }
     load_balancer {
-    target_group_arn = aws_lb_target_group.ecommerce[each.key].arn
+    target_group_arn = local.service_target_groups[each.key]
     container_name   = each.key
     container_port   = each.value
   }

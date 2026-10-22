@@ -47,4 +47,10 @@ locals {
       ]
     }
   }
+  service_target_groups = {
+    product = aws_lb_target_group.product_tg.arn
+    cart    = aws_lb_target_group.cart_tg.arn
+    user    = aws_lb_target_group.user_tg.arn
+    order   = aws_lb_target_group.order_tg.arn
+  }
 }
