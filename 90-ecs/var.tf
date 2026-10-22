@@ -48,9 +48,9 @@ locals {
     }
   }
   service_target_groups = {
-    product = aws_lb_target_group.product_tg.arn
-    cart    = aws_lb_target_group.cart_tg.arn
-    user    = aws_lb_target_group.user_tg.arn
-    order   = aws_lb_target_group.order_tg.arn
+    product = data.aws_ssm_parameter.product_tg_arn.value
+    cart    = data.aws_ssm_parameter.cart_tg_arn.value
+    user    = data.aws_ssm_parameter.user_tg_arn.value
+    order   = data.aws_ssm_parameter.order_tg_arn.value
   }
 }
