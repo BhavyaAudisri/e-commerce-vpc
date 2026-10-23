@@ -1,10 +1,10 @@
 module "alb" {
   source   = "terraform-aws-modules/alb/aws"
   internal = true
-  product_target_group_arn = data.aws_ssm_parameter.product_tg_arn.value
+  /* product_target_group_arn = data.aws_ssm_parameter.product_tg_arn.value
   cart_target_group_arn    = data.aws_ssm_parameter.cart_tg_arn.value
   user_target_group_arn    = data.aws_ssm_parameter.user_tg_arn.value
-  order_target_group_arn   = data.aws_ssm_parameter.order_tg_arn.value  
+  order_target_group_arn   = data.aws_ssm_parameter.order_tg_arn.value  */ 
   name                  = "ecommerce-internal-alb"
   vpc_id                = data.aws_ssm_parameter.vpc_id.value
   subnets               = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
