@@ -47,3 +47,59 @@ output "api_gateway_endpoint" {
   description = "eCommerce HTTP API endpoint"
   value       = aws_apigatewayv2_api.ecommerce_api.api_endpoint
 }
+
+
+resource "aws_apigatewayv2_integration" "alb" {
+  api_id = aws_apigatewayv2_api.ecommerce_api.id
+
+  integration_type   = "HTTP_PROXY"
+  integration_method = "ANY"
+
+  integration_uri = data.aws_ssm_parameter.internal_alb_listener_arn.value
+
+  connection_type = "VPC_LINK"
+  connection_id   = aws_apigatewayv2_vpc_link.ecommerce.id
+
+  payload_format_version = "1.0"
+
+  timeout_milliseconds = 30000
+}
+
+
+resource "aws_apigatewayv2_route" "public_root" {
+   api_id = aws_apigatewayv2_api.ecommerce_api.id 
+   route_key = "GET /" 
+   target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
+   authorization_type = "NONE" 
+   }
+
+
+resource "aws_apigatewayv2_route" "authenticated_proxy" { 
+  api_id = aws_apigatewayv2_api.ecommerce_api.id 
+  route_key = "ANY /{proxy+}" 
+  target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
+  authorization_type = "JWT" authorizer_id = aws_apigatewayv2_authorizer.cognito_jwt.id 
+  }
+
+resource "aws_apigatewayv2_route" "cors_preflight" { 
+  api_id = aws_apigatewayv2_api.ecommerce_api.id 
+  route_key = "OPTIONS /{proxy+}" 
+  target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
+  authorization_type = "NONE" 
+  }
+
+resource "aws_apigatewayv2_authorizer" "cognito_jwt" { 
+  api_id = aws_apigatewayv2_api.ecommerce_api.id 
+  name = "cognito-jwt-authorizer" 
+  authorizer_type = "JWT"
+
+identity_sources = [ "$request.header.Authorization" ]
+
+jwt_configuration { issuer = "https://cognito-idp.us-east-1.amazonaws.com/${data.aws_ssm_parameter.cognito_user_pool_id.value}"
+
+audience = [
+  data.aws_ssm_parameter.cognito_user_pool_id.value
+]
+
+} 
+}

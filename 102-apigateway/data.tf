@@ -8,3 +8,7 @@ data "aws_ssm_parameter" "vpclink_sg" {
 data "aws_ssm_parameter" "vpc_id" {
   name = "/${var.project_name}/vpc_id"
 }
+
+data "aws_ssm_parameter" "cognito_user_pool_id" {
+   name = "/ecommerce/cognito/user-pool-id"
+}
