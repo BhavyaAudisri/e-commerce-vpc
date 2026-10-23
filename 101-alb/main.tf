@@ -4,12 +4,12 @@ module "alb" {
   /* product_target_group_arn = data.aws_ssm_parameter.product_tg_arn.value
   cart_target_group_arn    = data.aws_ssm_parameter.cart_tg_arn.value
   user_target_group_arn    = data.aws_ssm_parameter.user_tg_arn.value
-  order_target_group_arn   = data.aws_ssm_parameter.order_tg_arn.value  */ 
-  name                  = "ecommerce-internal-alb"
-  vpc_id                = data.aws_ssm_parameter.vpc_id.value
-  subnets               = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
-  create_security_group = false
-  security_groups       = [local.app_alb_sg_id]
+  order_target_group_arn   = data.aws_ssm_parameter.order_tg_arn.value  */
+  name                       = "ecommerce-internal-alb"
+  vpc_id                     = data.aws_ssm_parameter.vpc_id.value
+  subnets                    = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
+  create_security_group      = false
+  security_groups            = [local.app_alb_sg_id]
   enable_deletion_protection = false
 }
 resource "aws_lb_listener" "http" {
@@ -18,9 +18,9 @@ resource "aws_lb_listener" "http" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.product.arn
-   
+
   }
 }
 

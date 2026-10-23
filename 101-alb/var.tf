@@ -34,7 +34,7 @@ variable "public_subnet_cidrs" {
     condition     = length(var.public_subnet_cidrs) == 2
     error_message = "Please provide 2 valid public subnet CIDR"
   }
-   default = ["10.10.1.0/24", "10.10.2.0/24"]
+  default = ["10.10.1.0/24", "10.10.2.0/24"]
 }
 
 variable "private_subnet_cidrs" {
@@ -53,4 +53,8 @@ variable "database_subnet_cidrs" {
     error_message = "Please provide 2 valid database subnet CIDR"
   }
   default = ["10.10.21.0/24", "10.10.22.0/24"]
+}
+
+variable "project_name" {
+  default = "ecommerce-vpc"
 }
