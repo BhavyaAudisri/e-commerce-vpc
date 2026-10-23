@@ -19,7 +19,7 @@ resource "aws_lb_listener" "http" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.product.arn
+    target_group_arn = data.aws_ssm_parameter.product_tg_arn.value
 
   }
 }
