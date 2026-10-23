@@ -34,7 +34,8 @@ allow_credentials  = false
 
 resource "aws_apigatewayv2_stage" "default" { 
   api_id = aws_apigatewayv2_api.ecommerce_api.id
-  name = "$default" auto_deploy = true 
+  name = "$default" 
+  auto_deploy = true 
   }
 
 resource "aws_apigatewayv2_vpc_link" "ecommerce" { 
