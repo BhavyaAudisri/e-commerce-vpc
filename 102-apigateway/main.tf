@@ -4,7 +4,7 @@ resource "aws_apigatewayv2_api" "ecommerce_api" {
   protocol_type = "HTTP"
 
   cors_configuration {
-    allow_origins = *
+    allow_origins = ["*"]
 
     allow_methods = [
       "GET",
@@ -14,7 +14,7 @@ resource "aws_apigatewayv2_api" "ecommerce_api" {
       "OPTIONS"
     ]
 
-    allow_headers = *
+    allow_headers = ["*"]
 
     expose_headers    = ["content-length"]
     max_age           = 300
