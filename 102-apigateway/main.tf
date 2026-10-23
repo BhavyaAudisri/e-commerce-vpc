@@ -1,6 +1,7 @@
 resource "aws_apigatewayv2_api" "ecommerce_api" {
    name = "ecommerce-api" 
-   description = "eCommerce HTTP API" protocol_type = "HTTP"
+   description = "eCommerce HTTP API"
+   protocol_type = "HTTP"
 
 cors_configuration { 
   allow_origins = [ 
