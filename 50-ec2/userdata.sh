@@ -16,11 +16,15 @@ apt-get install -y \
     curl \
     git \
     unzip
-echo "Installing Node.js..."
-
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-
+# Install Node.js 20
+echo "Installing Node.js 20..."
+curl -fsSL https://deb.nodesource.com/setup_20.x -o /tmp/nodesource_setup.sh
+bash /tmp/nodesource_setup.sh
 apt-get install -y nodejs
+
+node --version
+npm --version
+
     
 cd /tmp
 echo "Installing aws cli ..."
@@ -60,13 +64,16 @@ cd /opt/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/r
 sed -i "s|YOUR_USER_POOL_ID|$USER_POOL_ID|g" src/aws-config.js
 sed -i "s|YOUR_USER_POOL_CLIENT_ID|$APP_CLIENT_ID|g" src/aws-config.js
 
-# Build application
-echo " building application ..."
-cd ..
+# Navigate to the React application root
+cd /opt/e-commerce/aws-e-commerce-project-main/ecommerce-web-app-main/frontend/react-app
 rm -rf node_modules package-lock.json
+echo "Installing frontend dependencies..."
 npm install --save-dev eslint-plugin-jest
 npm install eslint@8
+
+echo "Building React application..."
 npm run build
+
 
 # Verify AWS authentication
 aws sts get-caller-identity
