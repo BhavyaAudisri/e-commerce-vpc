@@ -18,12 +18,10 @@ output "api_gateway_endpoint" {
 }
 
 
-resource "aws_api_gateway_vpc_link" "example" {
+resource "aws_api_gatewayv2_vpc_link" "ecommerce" {
   name        = "ecommerce-vpc-link"
   description = "VPC Link for ecommerce internal ALB"
-  subnet_ids = split( ",", data.aws_ssm_parameter.private_subnet_ids.value )
-
-  security_group_ids = [ data.aws_ssm_parameter.vpclink_sg.value ] 
+  vpc_id = data.aws_ssm_parameter.vpc_id.value
   tags = { 
     Name = "ecommerce-vpc-link" 
     Environment = "dev"
