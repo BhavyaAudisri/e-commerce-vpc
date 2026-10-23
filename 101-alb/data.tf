@@ -20,3 +20,6 @@ data "aws_ssm_parameter" "user_tg_arn" {
 data "aws_ssm_parameter" "order_tg_arn" {
   name = "/ecommerce/alb/order_tg_arn"
 }
+data "aws_ssm_parameter" "app_alb_sg_id" {
+  name = "/ecommerce-vpc/ecommerce_alb_sg"
+}
