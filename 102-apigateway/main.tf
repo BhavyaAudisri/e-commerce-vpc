@@ -78,7 +78,8 @@ resource "aws_apigatewayv2_route" "authenticated_proxy" {
   api_id = aws_apigatewayv2_api.ecommerce_api.id 
   route_key = "ANY /{proxy+}" 
   target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
-  authorization_type = "JWT" authorizer_id = aws_apigatewayv2_authorizer.cognito_jwt.id 
+  authorization_type = "JWT" 
+  authorizer_id = aws_apigatewayv2_authorizer.cognito_jwt.id 
   }
 
 resource "aws_apigatewayv2_route" "cors_preflight" { 

@@ -10,5 +10,5 @@ data "aws_ssm_parameter" "vpc_id" {
 }
 
 data "aws_ssm_parameter" "cognito_user_pool_id" {
-   name = "/ecommerce/cognito/user-pool-id"
+  name = "/ecommerce/cognito/user-pool-id"
 }
