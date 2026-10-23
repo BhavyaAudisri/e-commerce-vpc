@@ -22,6 +22,9 @@ resource "aws_apigatewayv2_vpc_link" "ecommerce" {
   name        = "ecommerce-vpc-link"
   description = "VPC Link for ecommerce internal ALB"
   vpc_id = data.aws_ssm_parameter.vpc_id.value
+  subnet_ids = split( ",", data.aws_ssm_parameter.private_subnet_ids.value )
+
+  security_group_ids = [ data.aws_ssm_parameter.ecommerce_vpclink_sg.value ]
   tags = { 
     Name = "ecommerce-vpc-link" 
     Environment = "dev"
