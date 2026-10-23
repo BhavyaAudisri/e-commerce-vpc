@@ -25,6 +25,7 @@ resource "aws_api_gateway_vpc_link" "example" {
 
   security_group_ids = [ data.aws_ssm_parameter.vpclink_sg.value ] 
   tags = { 
-    Name = "ecommerce-vpc-link" Environment = "dev"
+    Name = "ecommerce-vpc-link" 
+    Environment = "dev"
   } 
 }
