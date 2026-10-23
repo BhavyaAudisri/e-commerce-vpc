@@ -29,4 +29,30 @@ resource "aws_apigatewayv2_vpc_link" "ecommerce" {
     Name = "ecommerce-vpc-link" 
     Environment = "dev"
   } 
+
+cors_configuration {
+  allow_origins = [
+    "somisettibhavya.online"
+  ]
+
+  allow_methods = [
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE",
+    "OPTIONS"
+  ]
+
+  allow_headers = [
+    "authorization",
+    "content-type",
+    "x-amz-date",
+    "x-amz-security-token",
+    "x-api-key"
+  ]
+
+  expose_headers = ["content-length"]
+  max_age        = 300
+  allow_credentials = false
+}
 }
