@@ -18,7 +18,7 @@ output "api_gateway_endpoint" {
 }
 
 
-resource "aws_api_gatewayv2_vpc_link" "ecommerce" {
+resource "aws_apigatewayv2_vpc_link" "ecommerce" {
   name        = "ecommerce-vpc-link"
   description = "VPC Link for ecommerce internal ALB"
   vpc_id = data.aws_ssm_parameter.vpc_id.value
