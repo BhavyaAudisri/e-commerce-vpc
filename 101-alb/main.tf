@@ -1,10 +1,10 @@
 module "alb" {
   source   = "terraform-aws-modules/alb/aws"
   internal = true
-  product_target_group_arn = aws_lb_target_group.product.arn
-  cart_target_group_arn    = aws_lb_target_group.cart.arn
-  user_target_group_arn    = aws_lb_target_group.user.arn
-  order_target_group_arn   = aws_lb_target_group.order.arn  
+  product_target_group_arn = data.aws_ssm_parameter.product_tg_arn.value
+  cart_target_group_arn    = data.aws_ssm_parameter.cart_tg_arn.value
+  user_target_group_arn    = data.aws_ssm_parameter.user_tg_arn.value
+  order_target_group_arn   = data.aws_ssm_parameter.order_tg_arn.value  
   name                  = "ecommerce-internal-alb"
   vpc_id                = data.aws_ssm_parameter.vpc_id.value
   subnets               = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
@@ -30,7 +30,7 @@ resource "aws_lb_listener_rule" "product" {
 
   action {
     type             = "forward"
-    target_group_arn = var.product_target_group_arn
+    target_group_arn = data.aws_ssm_parameter.product_tg_arn.value
   }
 
   condition {
@@ -45,7 +45,7 @@ resource "aws_lb_listener_rule" "cart" {
 
   action {
     type             = "forward"
-    target_group_arn = var.cart_target_group_arn
+    target_group_arn = data.aws_ssm_parameter.cart_tg_arn.value
   }
 
   condition {
@@ -61,7 +61,7 @@ resource "aws_lb_listener_rule" "user" {
 
   action {
     type             = "forward"
-    target_group_arn = var.user_target_group_arn
+    target_group_arn = data.aws_ssm_parameter.user_tg_arn.value
   }
 
   condition {
@@ -77,7 +77,7 @@ resource "aws_lb_listener_rule" "order" {
 
   action {
     type             = "forward"
-    target_group_arn = var.order_target_group_arn
+    target_group_arn = data.aws_ssm_parameter.order_tg_arn.value
   }
 
   condition {

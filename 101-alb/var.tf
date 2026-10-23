@@ -54,19 +54,3 @@ variable "database_subnet_cidrs" {
   }
   default = ["10.10.21.0/24", "10.10.22.0/24"]
 }
-
-variable "product_target_group_arn" {
-  type = string
-}
-
-variable "cart_target_group_arn" {
-  type = string
-}
-
-variable "user_target_group_arn" {
-  type = string
-}
-
-variable "order_target_group_arn" {
-  type = string
-}
