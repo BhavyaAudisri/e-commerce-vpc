@@ -9,7 +9,7 @@ module "alb" {
   vpc_id                     = data.aws_ssm_parameter.vpc_id.value
   subnets                    = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
   create_security_group      = false
-  security_groups            = [local.app_alb_sg_id]
+  security_groups            = [local.ecommerce_alb_sg]
   enable_deletion_protection = false
 }
 resource "aws_lb_listener" "http" {

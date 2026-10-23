@@ -8,5 +8,5 @@ locals {
   db_route_id      = aws_route_table.database.id
   default_vpc_cidr = data.aws_vpc.default.cidr_block
   gw_id = aws_internet_gateway.main.id */
-  app_alb_sg_id = data.aws_ssm_parameter.ecommerce_alb_sg.value
+  ecommerce_alb_sg = data.aws_ssm_parameter.ecommerce_alb_sg.value
 }
