@@ -16,3 +16,15 @@ output "api_gateway_endpoint" {
   description = "eCommerce HTTP API endpoint"
   value       = aws_apigatewayv2_api.ecommerce_api.api_endpoint
 }
+
+
+resource "aws_api_gateway_vpc_link" "example" {
+  name        = "ecommerce-vpc-link"
+  description = "VPC Link for ecommerce internal ALB"
+  subnet_ids = split( ",", data.aws_ssm_parameter.private_subnet_ids.value )
+
+  security_group_ids = [ data.aws_ssm_parameter.vpclink_sg.value ] 
+  tags = { 
+    Name = "ecommerce-vpc-link" Environment = "dev"
+  } 
+}

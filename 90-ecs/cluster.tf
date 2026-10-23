@@ -17,14 +17,14 @@ resource "aws_ecs_service" "ecommerce" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets = split(",",data.aws_ssm_parameter.private_subnet_ids.value)
+    subnets          = split(",", data.aws_ssm_parameter.private_subnet_ids.value)
     security_groups  = [data.aws_ssm_parameter.ecommerce_ecs_sg.value]
     assign_public_ip = false
   }
-    load_balancer {
+  load_balancer {
     target_group_arn = local.service_target_groups[each.key]
     container_name   = "${each.key}-service"
-    container_port = each.value.port
+    container_port   = each.value.port
   }
 
   deployment_minimum_healthy_percent = 50
