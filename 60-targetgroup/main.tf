@@ -103,7 +103,7 @@ resource "aws_lb_listener_rule" "product_tg" {
 
   condition {
     path_pattern {
-      values = ["/products/*"]
+      values = ["/products*"]
     }
   }
 
@@ -119,7 +119,7 @@ resource "aws_lb_listener_rule" "cart_tg" {
 
   condition {
     path_pattern {
-      values = ["/cart/*"]
+      values = ["/cart*"]
     }
   }
 
@@ -135,7 +135,7 @@ resource "aws_lb_listener_rule" "users_tg" {
 
   condition {
     path_pattern {
-      values = ["/users/*"]
+      values = ["/users*"]
     }
   }
 
@@ -151,7 +151,7 @@ resource "aws_lb_listener_rule" "orders_tg" {
 
   condition {
     path_pattern {
-      values = ["/orders/*"]
+      values = ["/orders*"]
     }
   }
 
