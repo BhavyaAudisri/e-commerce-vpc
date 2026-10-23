@@ -67,42 +67,42 @@ resource "aws_apigatewayv2_integration" "alb" {
 
 
 resource "aws_apigatewayv2_route" "public_root" {
-   api_id = aws_apigatewayv2_api.ecommerce_api.id 
-   route_key = "GET /" 
-   target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
-   authorization_type = "NONE" 
-   }
+  api_id             = aws_apigatewayv2_api.ecommerce_api.id
+  route_key          = "GET /"
+  target             = "integrations/${aws_apigatewayv2_integration.alb.id}"
+  authorization_type = "NONE"
+}
 
 
-resource "aws_apigatewayv2_route" "authenticated_proxy" { 
-  api_id = aws_apigatewayv2_api.ecommerce_api.id 
-  route_key = "ANY /{proxy+}" 
-  target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
-  authorization_type = "JWT" 
-  authorizer_id = aws_apigatewayv2_authorizer.cognito_jwt.id 
-  }
+resource "aws_apigatewayv2_route" "authenticated_proxy" {
+  api_id             = aws_apigatewayv2_api.ecommerce_api.id
+  route_key          = "ANY /{proxy+}"
+  target             = "integrations/${aws_apigatewayv2_integration.alb.id}"
+  authorization_type = "JWT"
+  authorizer_id      = aws_apigatewayv2_authorizer.cognito_jwt.id
+}
 
-resource "aws_apigatewayv2_route" "cors_preflight" { 
-  api_id = aws_apigatewayv2_api.ecommerce_api.id 
-  route_key = "OPTIONS /{proxy+}" 
-  target = "integrations/${aws_apigatewayv2_integration.alb.id}" 
-  authorization_type = "NONE" 
-  }
+resource "aws_apigatewayv2_route" "cors_preflight" {
+  api_id             = aws_apigatewayv2_api.ecommerce_api.id
+  route_key          = "OPTIONS /{proxy+}"
+  target             = "integrations/${aws_apigatewayv2_integration.alb.id}"
+  authorization_type = "NONE"
+}
 
-resource "aws_apigatewayv2_authorizer" "cognito_jwt" { 
-  api_id = aws_apigatewayv2_api.ecommerce_api.id 
-  name = "cognito-jwt-authorizer" 
+resource "aws_apigatewayv2_authorizer" "cognito_jwt" {
+  api_id          = aws_apigatewayv2_api.ecommerce_api.id
+  name            = "cognito-jwt-authorizer"
   authorizer_type = "JWT"
 
-identity_sources = [ "$request.header.Authorization" ]
+  identity_sources = ["$request.header.Authorization"]
 
-jwt_configuration {
-  issuer = "https://cognito-idp.us-east-1.amazonaws.com/${data.aws_ssm_parameter.cognito_user_pool_id.value
-}"
+  jwt_configuration {
+    issuer = "https://cognito-idp.us-east-1.amazonaws.com/${data.aws_ssm_parameter.cognito_user_pool_id.value
+    }"
 
-audience = [
-  data.aws_ssm_parameter.cognito_user_pool_id.value
-]
+    audience = [
+      data.aws_ssm_parameter.cognito_user_pool_id.value
+    ]
 
-} 
+  }
 }
