@@ -24,7 +24,7 @@ resource "aws_ecs_service" "ecommerce" {
     load_balancer {
     target_group_arn = local.service_target_groups[each.key]
     container_name   = each.key
-    container_port   = each.value
+    container_port = each.value.container_port
   }
 
   deployment_minimum_healthy_percent = 50
