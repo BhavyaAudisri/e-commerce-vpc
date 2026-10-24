@@ -50,7 +50,7 @@ output "api_gateway_endpoint" {
 
 
 resource "aws_apigatewayv2_integration" "alb" {
-  api_id = aws_apigatewayv2_api.ecommerce-api.id
+  api_id = aws_apigatewayv2_api.ecommerce_api.id
 
   integration_type   = "HTTP_PROXY"
   integration_method = "ANY"
