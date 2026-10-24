@@ -52,7 +52,7 @@ output "api_gateway_endpoint" {
 resource "aws_apigatewayv2_integration" "alb" {
   api_id = aws_apigatewayv2_api.ecommerce_api.id
 
-  #integration_type   = "HTTP_PROXY"
+  integration_type   = "Private resource"
   #integration_method = "ANY"
 
   integration_uri = data.terraform_remote_state.default_alb_listener.outputs.default_listener_arn
