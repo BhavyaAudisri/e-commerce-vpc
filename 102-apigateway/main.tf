@@ -16,8 +16,8 @@ resource "aws_apigatewayv2_api" "ecommerce_api" {
 
     allow_headers = ["*"]
 
-    expose_headers    = ["content-length"]
-    max_age           = 300
+    /* expose_headers    = ["content-length"]
+    max_age           = 300 */
     allow_credentials = false
 
 
