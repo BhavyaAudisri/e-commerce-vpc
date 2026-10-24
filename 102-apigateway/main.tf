@@ -101,7 +101,7 @@ resource "aws_apigatewayv2_authorizer" "cognito_jwt" {
     }"
 
     audience = [
-      data.aws_ssm_parameter.cognito_user_pool_id.value
+      data.aws_ssm_parameter.cognito_app_client_id.value
     ]
 
   }

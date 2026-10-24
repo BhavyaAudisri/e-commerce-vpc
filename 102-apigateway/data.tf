@@ -13,6 +13,10 @@ data "aws_ssm_parameter" "cognito_user_pool_id" {
   name = "/ecommerce/cognito/user-pool-id"
 }
 
+data "aws_ssm_parameter" "cognito_app_client_id" {
+  name = "/ecommerce/cognito/app-client-id"
+}
+
 data "aws_ssm_parameter" "internal_alb_dns" {
   name = "/ecommerce/internal_alb_dns"
 }
