@@ -53,7 +53,7 @@ resource "aws_apigatewayv2_integration" "alb" {
   api_id = aws_apigatewayv2_api.ecommerce_api.id
 
   integration_type   = "HTTP_PROXY"
-  integration_method = "ANY"
+  #integration_method = "ANY"
 
   integration_uri = data.terraform_remote_state.default_alb_listener.outputs.default_listener_arn
 
@@ -62,7 +62,7 @@ resource "aws_apigatewayv2_integration" "alb" {
 
   payload_format_version = "1.0"
 
-  timeout_milliseconds = 30000
+  #timeout_milliseconds = 30000
 }
 
 
