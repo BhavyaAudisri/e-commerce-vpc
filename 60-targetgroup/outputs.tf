@@ -13,3 +13,7 @@ output "user_tg_arn" {
 output "order_tg_arn" {
   value = aws_lb_target_group.order_tg.arn
 }
+
+output "default_listener_arn" {
+  value = aws_lb_listener.default_tg.arn
+}
