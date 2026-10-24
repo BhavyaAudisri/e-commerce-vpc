@@ -55,7 +55,7 @@ resource "aws_apigatewayv2_integration" "alb" {
   integration_type   = "HTTP_PROXY"
   integration_method = "ANY"
 
-  integration_uri = data.aws_ssm_parameter.default_alb_listener.value
+  integration_uri = data.alb_listener.default_alb_listener.value
 
   connection_type = "VPC_LINK"
   connection_id   = aws_apigatewayv2_vpc_link.ecommerce.id
