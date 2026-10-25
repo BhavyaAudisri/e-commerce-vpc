@@ -48,5 +48,10 @@ locals {
     }
   }
 
-  service_target_groups = module.alb.service_target_groups
+  service_target_groups = {
+    product = data.aws_ssm_parameter.product_tg_arn.value
+    cart    = data.aws_ssm_parameter.cart_tg_arn.value
+    user    = data.aws_ssm_parameter.user_tg_arn.value
+    order   = data.aws_ssm_parameter.order_tg_arn.value
+  }
 }
