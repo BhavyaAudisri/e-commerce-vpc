@@ -4,7 +4,7 @@ resource "random_id" "bucket_suffix" {
 
 resource "aws_s3_bucket" "ecommerce" {
   bucket = "ecommerce-frontend-${random_id.bucket_suffix.hex}"
-
+  force_destroy = true
 }
 
 # Block all public access
@@ -37,5 +37,17 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "ecommerce" {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
     }
+  }
+}
+
+resource "aws_s3_bucket_website_configuration" "website" {
+  bucket = aws_s3_bucket.ecommerce.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
   }
 }
