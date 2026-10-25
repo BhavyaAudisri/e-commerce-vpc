@@ -1,5 +1,5 @@
 data "aws_s3_bucket" "ecommerce" {
-  bucket = "ecommerce-frontend-f1cafe07"
+  bucket = "ecommerce-frontend-1999b430"
 }
 
 data "aws_cloudfront_distribution" "cdn" {
