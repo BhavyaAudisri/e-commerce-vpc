@@ -21,7 +21,7 @@ resource "aws_db_instance" "ecommerce" {
   allocated_storage = 20
   storage_type      = "gp3"
 
-  db_name  = "postgres"
+  db_name  = "ecommercedb"
   username = "postgres"
   password = data.aws_ssm_parameter.db_password.value
 
